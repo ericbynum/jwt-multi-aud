@@ -10,6 +10,13 @@ service, would it not make more sense to have a single jwt that is valid for eac
 4. Click the "Authorize" button in swagger and plug in that jwt value
 5. Execute the /WeatherForecast endpoint to verify you are authorized and get a 200 response
 
+## Configuration
+The jwt settings are configured in appsettings:
+```json
+"JwtAudiences": ["aud1", "aud2"],
+"ValidAudience": "aud2"
+```
+
 ## Token Validation
 The validation of the jwt takes place in Extensions/AuthExtensions.cs:
 ```csharp
