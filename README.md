@@ -8,7 +8,7 @@ service, would it not make more sense to have a single jwt that is valid for eac
 2. Use the /auth endpoint to generate a jwt
 3. Copy jwt
 4. Click the "Authorize" button in swagger and plug in that jwt value
-5. Execute the /WeatherForecast endpoint to verify you are authorized and get a 200 response
+5. Execute the /weather-forecasts endpoint to verify you are authorized and get a 200 response
 
 ## Configuration
 The jwt settings are configured in appsettings:

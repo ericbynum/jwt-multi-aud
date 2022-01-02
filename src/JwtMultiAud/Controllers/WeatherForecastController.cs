@@ -5,7 +5,8 @@ namespace JwtMultiAud.Controllers;
 
 [Authorize]
 [ApiController]
-[Route("[controller]")]
+[Produces("application/json")]
+[ProducesErrorResponseType(typeof(void))]
 public class WeatherForecastController : ControllerBase
 {
     private static readonly string[] Summaries = new[]
@@ -20,7 +21,9 @@ public class WeatherForecastController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
+    [HttpGet("weather-forecasts")]
+    [ProducesResponseType(typeof(WeatherForecast[]), 200)]
+    [ProducesResponseType(401)]
     public IEnumerable<WeatherForecast> Get()
     {
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
