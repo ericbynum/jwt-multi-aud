@@ -10,6 +10,21 @@ service, would it not make more sense to have a single jwt that is valid for eac
 4. Click the "Authorize" button in swagger and plug in that jwt value
 5. Execute the /weather-forecasts endpoint to verify you are authorized and get a 200 response
 
+## Decoded JWT
+The decoded jwt payload will look something like the following:
+```json
+{
+  "aud": [
+    "aud1",
+    "aud2"
+  ],
+  "nbf": 1641227516,
+  "exp": 1641231116,
+  "iat": 1641227516,
+  "iss": "me"
+}
+```
+
 ## Configuration
 The jwt settings are configured in appsettings:
 ```json
