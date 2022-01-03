@@ -25,13 +25,12 @@ public class AuthController : ControllerBase
         var key = configuration.GetValue<string>("JwtSecurityKey");
         var tokenKey = Encoding.ASCII.GetBytes(key);
 
-        var claims = new List<Claim>();
         var audiences = configuration.GetSection("JwtAudiences").Get<string[]>();
-        foreach (var audience in audiences)
-        {
-            // adding multiple "aud" claim keys will become a single "aud" claim with an array of values
-            claims.Add(new Claim("aud", audience));
-        }
+        var audClaims = audiences.Select(aud => new Claim(JwtRegisteredClaimNames.Aud, aud));
+
+        var claims = new List<Claim>();
+        // adding multiple "aud" claim keys will become a single "aud" claim with an array of values
+        claims.AddRange(audClaims);
 
         var tokenDescriptor = new SecurityTokenDescriptor()
         {
